@@ -2,15 +2,21 @@ import React, { useState } from 'react'
 import './Search.css'
 import SearchIcon from '@mui/icons-material/Search'
 import { Button } from '@mui/material'
+import { useNavigate } from "react-router-dom"
 
 function Search() {
     const [Input, setInput] = useState("");
+    const navigate = useNavigate();
 
     const search = (e) => {
         e.preventDefault();
+
+        console.log('You hit search >>');
+
+        navigate('/search')
     };
   return (
-    <div className='search'>
+    <form className='search'>
         <div className='search__input'>
             <SearchIcon className='search__inputIcon'/>
             <input value={Input} onChange={e => setInput(e.target.value)}/>
@@ -18,10 +24,10 @@ function Search() {
         </div>
 
         <div className='search__buttons'>
-            <Button onClick={search} variant="outlined">Google Search</Button>
+            <Button type='submit' onClick={search} variant="outlined">Google Search</Button>
             <Button variant="outlined">I'm Feeling Lucky</Button>
         </div>
-    </div>
+    </form>
   )
 }
 
