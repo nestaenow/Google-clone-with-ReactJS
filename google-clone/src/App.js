@@ -8,7 +8,10 @@ function App() {
     <div className="app">
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/search" element={<h1>This is the Search Page</h1>} />
+        <Route path="/about" element={<Home />} />
+        <Route path="/store" element={<Home />} />
+        <Route path="/gmail" element={<Home />} />
+        <Route path="/images" element={<Home />} />
       </Routes>
     </div>
   );
