@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 import useGoogleSearch from '../useGoogleSearch';
 import SearchIcon from '@mui/icons-material/Search';
 import ImagesIcon from '@mui/icons-material/PhotoSizeSelectActualOutlined';
+import NewsIcon from '@mui/icons-material/ArticleOutlined';
+import VideosIcon from '@mui/icons-material/OndemandVideoOutlined';
+import MapsIcon from '@mui/icons-material/RoomOutlined';
+import MoreIcon from '@mui/icons-material/MoreVertOutlined';
 import './SearchPage.css'
 import Search from '../components/Search';
 import Response from '../response'
@@ -35,7 +39,7 @@ function SearchPage() {
                             <ImagesIcon />
                             <Link to='/images'>Images</Link>
                         </div>
-                        {/* <div className='searchPage__option'>
+                        <div className='searchPage__option'>
                             <NewsIcon />
                             <Link to='/news'>News</Link>
                         </div>
@@ -50,17 +54,40 @@ function SearchPage() {
                         <div className='searchPage__option'>
                             <MoreIcon />
                             <Link to='/more'>More</Link>
-                        </div> */}
+                        </div>
                     </div>
                     <div className='searchPage__optionsRight'>
-                        
+                        <div className='searchPage__option'>
+                            <Link to='/tools'>Tools</Link>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div className='searchPage__results'>
-            
-        </div>
+        {true && (
+            <div className='searchPage__results'>
+                <p className='searchPage__resultCount'>
+                    About {data?.searchInformation.formattedTotalResults} results ({data?.searchInformation.formattedSearchTime} seconds) for {term}
+                </p>
+
+                {data?.items.map(item => (
+                    <div className='searchPage__result'>
+                        <a href={item.link}>
+                            {item.pagemap?.cse_image.length > 0 item.pagemap?.cse_image[0]?.src && (
+                                <img className='searchPage__resultImage' src={ item.pagemap?.cse_image?.length > 0  } alt="" srcset="" />
+                            )}
+                            {item.displayLink}    
+                        </a>
+                        <a className='searchPage__resultTitle' href={item.link}>
+                            <h2>{item.title}</h2>    
+                        </a>
+                        <p className='searchPage__resultSnippet'>
+                            {item.snippet}
+                        </p>
+                    </div>
+                ))}
+            </div>
+        )}
     </div>
   )
 }
